@@ -1,4 +1,4 @@
-// src/components/CartWidget.jsx
+
 export default function CartWidget() {
     return (
         <div className="cart-widget">

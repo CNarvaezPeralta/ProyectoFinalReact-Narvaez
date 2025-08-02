@@ -37,7 +37,7 @@ body {
 .logo {
   display: flex;
   align-items: center;
-  gap: 0.6rem; /* espacio entre imagen y texto */
+  gap: 0.6rem; 
 }
 
 .logo-img {

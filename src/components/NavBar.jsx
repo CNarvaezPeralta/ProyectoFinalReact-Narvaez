@@ -1,4 +1,4 @@
-// src/components/NavBar.jsx
+
 import CartWidget from './CartWidget';
 import logo from '../assets/logo.png';
 

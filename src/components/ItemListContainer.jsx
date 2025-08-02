@@ -1,4 +1,4 @@
-// src/components/ItemListContainer.jsx
+
 export default function ItemListContainer({ greeting }) {
     return (
         <main className="welcome-container">
