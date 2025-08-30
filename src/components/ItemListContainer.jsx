@@ -1,12 +1,3 @@
-
-// export default function ItemListContainer({ greeting }) {
-//     return (
-//         <main className="welcome-container">
-//             <h2>{greeting}</h2>
-//         </main>
-//     );
-// }
-
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
