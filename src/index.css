@@ -1,11 +1,11 @@
+/* Variables y estilos globales */
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
   font-weight: 400;
+  line-height: 1.5;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: #333;                  /* Texto oscuro para fondo claro */
+  background-color: #ffffff;   /* Fondo blanco */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,28 +13,32 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Enlaces */
 a {
   font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  color: #007BFF;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
+a:hover {
+  color: #0056b3;
+}
+
+/* Reset general del body */
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #f5f5f5; /* Consistente con App.css */
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Títulos */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
 }
 
+/* Botones generales */
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -43,26 +47,36 @@ button {
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
+  color: white;
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
-  border-color: #646cff;
+  border-color: #007BFF;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #999;
+}
+
+/* Adaptación a sistema en modo claro */
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
+    color: #333;
     background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
   }
 }

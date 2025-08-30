@@ -1,8 +1,8 @@
 
-export default function CartWidget() {
+export default function CartWidget({ cantidad}) {
     return (
         <div className="cart-widget">
-            🛒 <span>3</span>
+            🛒 <span>{cantidad}</span>
         </div>
     );
 }
