@@ -11,6 +11,8 @@ function ItemDetailContainer() {
             { id: '1', nombre: 'Bolso Lila', precio: 40, descripcion: 'Bolso artesanal color lila' },
             { id: '2', nombre: 'Bolso Verde', precio: 45, descripcion: 'Bolso artesanal color verde' },
             { id: '3', nombre: 'Bolso Rosa', precio: 38, descripcion: 'Bolso artesanal color rosa' },
+            { id: '4', nombre: 'Bolso Grande', precio: 50, descripcion: 'Bolso artesanal color rosa' },
+            { id: '5', nombre: 'Bolso Pequeño', precio: 35, descripcion: 'Bolso artesanal color rosa' },
         ];
 
         const obtenerProducto = new Promise((resolve) => {
