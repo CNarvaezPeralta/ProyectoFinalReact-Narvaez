@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import ItemDetail from './ItemDetail';
 
 function ItemDetailContainer() {
-    const { itemId } = useParams(); // Captura el ID de la URL
+    const { itemId } = useParams();
     const [producto, setProducto] = useState(null);
 
     useEffect(() => {
-        // Simulación de llamada a base de datos con una promesa
         const productos = [
             { id: '1', nombre: 'Bolso Lila', precio: 40, descripcion: 'Bolso artesanal color lila' },
             { id: '2', nombre: 'Bolso Verde', precio: 45, descripcion: 'Bolso artesanal color verde' },
@@ -26,17 +26,9 @@ function ItemDetailContainer() {
     }, [itemId]);
 
     return (
-        <div style={{ padding: '2rem' }}>
-            {producto ? (
-                <>
-                    <h2>{producto.nombre}</h2>
-                    <p>{producto.descripcion}</p>
-                    <p><strong>Precio:</strong> ${producto.precio}</p>
-                </>
-            ) : (
-                <p>Cargando producto...</p>
-            )}
-        </div>
+        <>
+            {producto ? <ItemDetail producto={producto} /> : <p style={{ padding: '2rem' }}>Cargando producto...</p>}
+        </>
     );
 }
 
