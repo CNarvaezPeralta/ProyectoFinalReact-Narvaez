@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
-
+import Cart from './components/Cart';
 
 function App() {
   return (
@@ -22,7 +22,9 @@ function App() {
 
         {/* Ruta 404 */}
         <Route path="*" element={<h2 style={{ padding: '2rem' }}>404 - Página no encontrada</h2>} />
-
+        
+        {/* Ruta al carrito de compra */}
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </>
   );
