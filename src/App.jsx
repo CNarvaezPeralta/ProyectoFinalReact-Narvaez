@@ -6,9 +6,13 @@ import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import Cart from './components/Cart';
 
+// 👇 Importamos el Provider del contexto del carrito
+import { CartProvider } from './context/CartContext';
+
 function App() {
   return (
-    <>
+    // 👇 Envolvemos toda la app con el Provider
+    <CartProvider>
       <NavBar />
       <Routes>
         {/* Ruta principal */}
@@ -26,7 +30,7 @@ function App() {
         {/* Ruta al carrito de compra */}
         <Route path="/cart" element={<Cart />} />
       </Routes>
-    </>
+    </CartProvider>
   );
 }
 
