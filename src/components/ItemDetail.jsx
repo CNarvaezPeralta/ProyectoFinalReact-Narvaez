@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import ItemCount from './ItemCount';
+import { useCart } from '../context/useCart'; // ✅ Importamos el contexto
 
 function ItemDetail({ producto }) {
-    const [agregado, setAgregado] = useState(false); // Estado para ocultar ItemCount luego de agregar
+    const [agregado, setAgregado] = useState(false);
+    const { addItem } = useCart(); // ✅ Usamos la función del contexto
 
-    // Esta función se ejecuta al hacer clic en "Agregar al carrito"
     const handleAdd = (cantidad) => {
-        console.log(`Agregado al carrito: ${cantidad} unidades`);
-        setAgregado(true); // Oculta ItemCount
-        // Más adelante: aquí se llamará al context del carrito
+        addItem(producto, cantidad); // ✅ Agregamos al carrito
+        setAgregado(true);
     };
 
     return (

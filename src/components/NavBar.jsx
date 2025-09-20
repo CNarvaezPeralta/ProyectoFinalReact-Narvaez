@@ -20,7 +20,9 @@ export default function NavBar() {
                         <li><Link to="/categoria/tamaño">Bolsos por tamaño</Link></li>
                         <li><Link to="/contacto">Contacto</Link></li>
                     </ul>
-                    <CartWidget cantidad={3} />
+
+                    {/* Ícono de carrito */}
+                    <CartWidget />
                 </nav>
             </div>
         </header>
