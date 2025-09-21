@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ItemDetail from './ItemDetail';
 
-// 🔽 importa Firestore
 import { db } from '../firebase/firebaseconfig';
 import { doc, getDoc } from 'firebase/firestore';
 
 function ItemDetailContainer() {
     const { itemId } = useParams();
     const [producto, setProducto] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchProducto = async () => {
@@ -19,25 +20,23 @@ function ItemDetailContainer() {
                 if (docSnap.exists()) {
                     setProducto({ id: docSnap.id, ...docSnap.data() });
                 } else {
-                    console.log('No se encontró el producto');
+                    setError("Producto no encontrado.");
                 }
-            } catch (error) {
-                console.error('Error al obtener el producto:', error);
+            } catch (err) {
+                console.error("Error al obtener el producto:", err);
+                setError("Hubo un error al cargar el producto.");
+            } finally {
+                setLoading(false);
             }
         };
 
         fetchProducto();
     }, [itemId]);
 
-    return (
-        <>
-            {producto ? (
-                <ItemDetail producto={producto} />
-            ) : (
-                <p style={{ padding: '2rem' }}>Cargando producto...</p>
-            )}
-        </>
-    );
+    if (loading) return <p style={{ padding: '2rem' }}>Cargando producto...</p>;
+    if (error) return <p style={{ padding: '2rem', color: 'red' }}>{error}</p>;
+
+    return <ItemDetail producto={producto} />;
 }
 
 export default ItemDetailContainer;
