@@ -1,52 +1,42 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { db } from '../firebase/firebaseconfig';
+import { collection, getDocs } from 'firebase/firestore';
 import ItemList from './ItemList';
 
-function ItemListContainer({ greeting }) {
-    const { categoriaId } = useParams();
+function ItemListContainer() {
     const [productos, setProductos] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const { idCategoria } = useParams();
 
     useEffect(() => {
-        setLoading(true);
+        const obtenerProductos = async () => {
+            try {
+                const querySnapshot = await getDocs(collection(db, 'productos'));
+                const productosFirestore = querySnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
 
-        const productosSimulados = [
-            { id: '1', nombre: 'Bolso Lila', precio: 40, categoria: 'colores' },
-            { id: '2', nombre: 'Bolso Verde', precio: 45, categoria: 'colores' },
-            { id: '3', nombre: 'Bolso Rosa', precio: 38, categoria: 'colores' },
-            { id: '4', nombre: 'Bolso Grande', precio: 50, categoria: 'tamaño' },
-            { id: '5', nombre: 'Bolso Pequeño', precio: 35, categoria: 'tamaño' },
-        ];
+                console.log("Productos desde Firebase:", productosFirestore);
 
-        const obtenerProductos = new Promise((resolve) => {
-            setTimeout(() => {
-                resolve(productosSimulados);
-            }, 1000);
-        });
-
-        obtenerProductos.then((res) => {
-            if (categoriaId) {
-                const filtrados = res.filter(prod => prod.categoria === categoriaId);
-                setProductos(filtrados);
-            } else {
-                setProductos(res);
+                if (idCategoria) {
+                    const filtrados = productosFirestore.filter(prod => prod.categoria === idCategoria);
+                    setProductos(filtrados);
+                } else {
+                    setProductos(productosFirestore);
+                }
+            } catch (error) {
+                console.error("Error al obtener productos: ", error);
             }
+        };
 
-            setLoading(false);
-        });
-    }, [categoriaId]);
+        obtenerProductos();
+    }, [idCategoria]);
 
     return (
-        <div style={{ padding: '2rem' }}>
-            <h2>{greeting || "Catálogo de productos"}</h2>
-
-            {loading ? (
-                <p>Cargando productos...</p>
-            ) : productos.length === 0 ? (
-                <p>No se encontraron productos en esta categoría.</p>
-            ) : (
-                <ItemList productos={productos} />
-            )}
+        <div>
+            <h2 style={{ textAlign: 'center' }}>Productos</h2>
+            <ItemList productos={productos} />
         </div>
     );
 }

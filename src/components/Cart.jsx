@@ -20,7 +20,7 @@ function Cart() {
             {cart.map((item) => (
                 <CartItem key={item.id} item={item} onRemove={removeItem} />
             ))}
-            <h3>Total: ${cartTotal}</h3>
+            <h3>Total: ${cartTotal.toFixed(2)}</h3>
 
             <button onClick={() => navigate('/checkout')} style={{ marginTop: '1rem', marginRight: '1rem' }}>
                 Finalizar compra

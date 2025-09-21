@@ -5,12 +5,7 @@ export default function ItemList({ productos }) {
     return (
         <ul style={{ listStyle: 'none', padding: 0 }}>
             {productos.map((producto) => (
-                <Item
-                    key={producto.id}
-                    id={producto.id}
-                    nombre={producto.nombre}
-                    precio={producto.precio}
-                />
+                <Item key={producto.id} producto={producto} />
             ))}
         </ul>
     );

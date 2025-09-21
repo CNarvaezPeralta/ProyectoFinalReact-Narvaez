@@ -31,7 +31,9 @@ export function CartProvider({ children }) {
     };
 
     const cartQuantity = cart.reduce((acc, item) => acc + item.cantidad, 0);
-    const cartTotal = cart.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
+    const cartTotal = parseFloat(
+        cart.reduce((acc, item) => acc + item.precio * item.cantidad, 0).toFixed(2)
+    );
 
     return (
         <CartContext.Provider
