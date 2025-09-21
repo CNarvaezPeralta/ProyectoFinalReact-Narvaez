@@ -5,8 +5,9 @@ import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import Cart from './components/Cart';
+import CheckoutForm from './components/CheckoutForm';
 
-// 👇 Importamos el Provider del contexto del carrito
+
 import { CartProvider } from './context/CartContext';
 
 function App() {
@@ -29,6 +30,10 @@ function App() {
         
         {/* Ruta al carrito de compra */}
         <Route path="/cart" element={<Cart />} />
+
+        {/* Ruta al formulario */}
+        <Route path="/checkout" element={<CheckoutForm />} />
+        
       </Routes>
     </CartProvider>
   );

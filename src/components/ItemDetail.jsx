@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // ✅ Importamos useNavigate
 import ItemCount from './ItemCount';
 import { useCart } from '../context/useCart'; // ✅ Importamos el contexto
 
 function ItemDetail({ producto }) {
     const [agregado, setAgregado] = useState(false);
     const { addItem } = useCart(); // ✅ Usamos la función del contexto
+    const navigate = useNavigate(); // ✅ Hook para redireccionar
 
     const handleAdd = (cantidad) => {
         addItem(producto, cantidad); // ✅ Agregamos al carrito
@@ -20,7 +22,15 @@ function ItemDetail({ producto }) {
             {!agregado ? (
                 <ItemCount stock={10} initial={1} onAdd={handleAdd} />
             ) : (
-                <p style={{ color: 'green' }}>Producto agregado al carrito ✔️</p>
+                <div>
+                    <p style={{ color: 'green' }}>Producto agregado al carrito ✔️</p>
+                    <button onClick={() => navigate('/')} style={{ marginRight: '1rem' }}>
+                        Seguir comprando
+                    </button>
+                    <button onClick={() => navigate('/cart')}>
+                        Ir al carrito
+                    </button>
+                </div>
             )}
         </div>
     );

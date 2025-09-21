@@ -1,17 +1,15 @@
-// src/components/Cart.jsx
 import { useCart } from '../context/useCart';
 import CartItem from './CartItem';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Cart() {
-    const { cart, cartQuantity, cartTotal, clearCart } = useCart();
+    const { cart, removeItem, cartTotal, clearCart } = useCart();
+    const navigate = useNavigate();
 
     if (cart.length === 0) {
         return (
             <div style={{ padding: '2rem' }}>
-                <h2>Carrito de compras</h2>
-                <p>Tu carrito está vacío 🛒</p>
-                <Link to="/">Volver a la tienda</Link>
+                <h2>Tu carrito está vacío 🛒</h2>
             </div>
         );
     }
@@ -19,22 +17,17 @@ function Cart() {
     return (
         <div style={{ padding: '2rem' }}>
             <h2>Carrito de compras</h2>
-
-            {cart.map((producto) => (
-                <CartItem key={producto.id} item={producto} />
+            {cart.map((item) => (
+                <CartItem key={item.id} item={item} onRemove={removeItem} />
             ))}
+            <h3>Total: ${cartTotal}</h3>
 
-            <hr />
-
-            <p><strong>Total de productos:</strong> {cartQuantity}</p>
-            <p><strong>Total a pagar:</strong> ${cartTotal}</p>
-
-            <div style={{ marginTop: '1rem' }}>
-                <button onClick={clearCart}>Vaciar carrito 🗑</button>
-                <Link to="/checkout">
-                    <button style={{ marginLeft: '1rem' }}>Finalizar compra 🛍</button>
-                </Link>
-            </div>
+            <button onClick={() => navigate('/checkout')} style={{ marginTop: '1rem', marginRight: '1rem' }}>
+                Finalizar compra
+            </button>
+            <button onClick={clearCart} style={{ marginTop: '1rem' }}>
+                Vaciar carrito
+            </button>
         </div>
     );
 }
