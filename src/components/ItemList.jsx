@@ -1,6 +1,6 @@
 
 import Item from "./Item";
-import "../styles/ItemList.css"; // lo creamos si hace falta
+import "../styles/ItemList.css"; 
 
 const ItemList = ({ productos }) => {
     return (
