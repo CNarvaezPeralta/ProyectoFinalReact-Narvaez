@@ -1,12 +1,81 @@
-# React + Vite
+# Proyecto Final React - Narváez
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es una Single Page Application (SPA) de un e-commerce desarrollada con **React** como parte del curso de **Desarrollo Web Frontend con React** de Coderhouse.
 
-Currently, two official plugins are available:
+## 👜 Temática
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+La tienda online simula un e-commerce de bolsos hechos a mano, con productos cargados desde una base de datos en la nube y la posibilidad de realizar una compra completa desde la web.
 
-## Expanding the ESLint configuration
+## 🚀 Tecnologías utilizadas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React
+- React Router DOM
+- Firebase / Firestore
+- JavaScript
+- Context API
+- CSS
+
+## 🧩 Estructura de componentes
+
+```
+App
+├── NavBar
+│   └── CartWidget
+├── ItemListContainer
+│   └── ItemList
+│       └── Item
+├── ItemDetailContainer
+│   └── ItemDetail
+│       └── ItemCount
+├── Cart
+│   └── CartItem
+└── CheckoutForm
+```
+
+## 🔗 Funcionalidades
+
+- Listado dinámico de productos desde Firebase.
+- Filtrado por categorías.
+- Vista en detalle de cada producto.
+- Selección de cantidad con validación de stock.
+- Carrito de compras con gestión global (Context).
+- Formulario de compra con generación de orden en Firestore.
+- Mensaje con ID de la orden al finalizar compra.
+- Navegación SPA con React Router.
+- Renderizado condicional y UX amigable.
+
+## 📦 Instalación y uso
+
+1. Clonar el repositorio:
+   ```
+   git clone https://github.com/tuUsuario/ProyectoFinalNarvaez.git
+   cd ProyectoFinalNarvaez
+   ```
+
+2. Instalar dependencias:
+   ```
+   npm install
+   ```
+
+3. Crear un archivo `.env` en la raíz con tus claves de Firebase:
+   ```
+   VITE_FIREBASE_API_KEY=xxxxxxxxxxxxxxxx
+   VITE_FIREBASE_AUTH_DOMAIN=xxxxxxxxxxxxxxxx
+   VITE_FIREBASE_PROJECT_ID=xxxxxxxxxxxx
+   VITE_FIREBASE_STORAGE_BUCKET=xxxxxxxxxxxx
+   VITE_FIREBASE_MESSAGING_SENDER_ID=xxxxxxxx
+   VITE_FIREBASE_APP_ID=xxxxxxxxxxxxxxxx
+   ```
+
+4. Iniciar el servidor de desarrollo:
+   ```
+   npm run dev
+   ```
+
+## 📁 Deploy (opcional)
+
+Podés subir tu proyecto a [Vercel](https://vercel.com/) o [Netlify](https://netlify.com/) para compartirlo públicamente.
+
+## ✨ Autor
+
+Desarrollado por **Carlos Narváez** como entrega final del curso de React en Coderhouse.

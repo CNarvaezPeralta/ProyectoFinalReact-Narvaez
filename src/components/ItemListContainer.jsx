@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ItemList from './ItemList';
+import '../styles/ItemList.css'
 
 import { db } from '../firebase/firebaseconfig';
 import { collection, getDocs, query, where } from 'firebase/firestore';
@@ -41,7 +42,12 @@ function ItemListContainer() {
             });
     }, [categoryId]);
 
-    if (loading) return <p style={{ padding: '2rem' }}>Cargando productos...</p>;
+    if (loading) return (
+        <div style={{ textAlign: 'center', padding: '2rem' }}>
+            <div className="spinner"></div>
+            <p>Cargando productos...</p>
+        </div>
+    );
     if (error) return <p style={{ padding: '2rem', color: 'red' }}>{error}</p>;
     if (productos.length === 0) return <p style={{ padding: '2rem' }}>No se encontraron productos.</p>;
 
