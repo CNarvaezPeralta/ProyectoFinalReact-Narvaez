@@ -15,6 +15,7 @@ function ItemDetail({ producto }) {
 
     return (
         <div style={{ padding: '2rem' }}>
+            <img src={producto.imagen} alt={producto.nombre} style={{ maxWidth: '300px', marginBottom: '1rem' }} />
             <h2>{producto.nombre}</h2>
             <p>{producto.descripcion}</p>
             <p><strong>Precio:</strong> ${producto.precio}</p>

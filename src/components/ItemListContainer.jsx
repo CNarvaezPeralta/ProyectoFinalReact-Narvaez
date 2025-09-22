@@ -11,14 +11,14 @@ function ItemListContainer() {
     const [loading, setLoading] = useState(true); // 👈 loader
     const [error, setError] = useState(null);     // 👈 manejo de error
 
-    const { categoryId } = useParams();
+    const { categoriaId } = useParams();
 
     useEffect(() => {
         setLoading(true);
         setError(null);
 
-        const productosRef = categoryId
-            ? query(collection(db, 'productos'), where('categoria', '==', categoryId))
+        const productosRef = categoriaId
+            ? query(collection(db, 'productos'), where('categoria', '==', categoriaId))
             : collection(db, 'productos');
 
         getDocs(productosRef)
@@ -40,7 +40,7 @@ function ItemListContainer() {
             .finally(() => {
                 setLoading(false);
             });
-    }, [categoryId]);
+    }, [categoriaId]);
 
     if (loading) return (
         <div style={{ textAlign: 'center', padding: '2rem' }}>
