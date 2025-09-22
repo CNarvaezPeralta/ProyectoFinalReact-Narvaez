@@ -72,9 +72,6 @@ App
    npm run dev
    ```
 
-## 📁 Deploy (opcional)
-
-Podés subir tu proyecto a [Vercel](https://vercel.com/) o [Netlify](https://netlify.com/) para compartirlo públicamente.
 
 ## ✨ Autor
 

@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useCart } from '../context/useCart';
 import { db } from '../firebase/firebaseconfig';
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
+import '../styles/CheckoutForm.css';
+
 
 function CheckoutForm() {
     const { cart, cartTotal, clearCart } = useCart();
@@ -52,9 +54,10 @@ function CheckoutForm() {
             <h2>Finalizar compra</h2>
 
             {orderId ? (
-                <div>
-                    <p> ¡Gracias por tu compra!</p>
-                    <p> Tu número de orden es: <strong>{orderId}</strong></p>
+                <div className="order-success">
+                    <h3>¡Gracias por tu compra! </h3>
+                    <p>Tu número de orden es:</p>
+                    <p className="order-id">{orderId}</p>
                 </div>
             ) : (
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '400px' }}>
