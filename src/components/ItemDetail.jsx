@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // ✅ Importamos useNavigate
+import { useNavigate } from 'react-router-dom'; // Importamos useNavigate
 import ItemCount from './ItemCount';
-import { useCart } from '../context/useCart'; // ✅ Importamos el contexto
+import { useCart } from '../context/useCart'; // Importamos el contexto
 
 function ItemDetail({ producto }) {
     const [agregado, setAgregado] = useState(false);
-    const { addItem } = useCart(); // ✅ Usamos la función del contexto
-    const navigate = useNavigate(); // ✅ Hook para redireccionar
+    const { addItem } = useCart(); // Usamos la función del contexto
+    const navigate = useNavigate(); // Hook para redireccionar
 
     const handleAdd = (cantidad) => {
-        addItem(producto, cantidad); // ✅ Agregamos al carrito
+        addItem(producto, cantidad); // Agregamos al carrito
         setAgregado(true);
     };
 

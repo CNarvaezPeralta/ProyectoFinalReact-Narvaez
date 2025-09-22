@@ -10,6 +10,7 @@ import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import Cart from './components/Cart';
 import CheckoutForm from './components/CheckoutForm';
+import Contacto from './components/Contacto';
 
 // Importación del Provider del carrito (context API)
 import { CartProvider } from './context/CartContext';
@@ -40,6 +41,9 @@ function App() {
 
         {/* Ruta del formulario de checkout */}
         <Route path="/checkout" element={<CheckoutForm />} />
+
+        {/* Ruta contacto */}
+        <Route path="/contacto" element={<Contacto />} />
 
         {/* Ruta para páginas no encontradas (404) */}
         <Route
