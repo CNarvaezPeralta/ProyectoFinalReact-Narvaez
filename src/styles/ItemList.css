@@ -1,0 +1,11 @@
+/* =============== contenedor para la lista de productos =============== */
+
+.item-list-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+}

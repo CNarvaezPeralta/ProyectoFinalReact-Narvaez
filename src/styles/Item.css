@@ -1,0 +1,35 @@
+/* ======================== Estilo para cada item ======================== */
+
+.item-card {
+    background: #fff; 
+    border-radius: 12px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    padding: 1.5rem; 
+    text-align: center; 
+    transition: transform 0.3s; 
+}
+
+/* Efecto de zoom al pasar el cursor */
+.item-card:hover {
+    transform: scale(1.03);
+}
+
+/* Imagen del producto */
+.item-image {
+    width: 100%; 
+    height: 200px; 
+    object-fit: cover; 
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+/* Botón "Ver más" */
+.ver-mas {
+    display: inline-block;
+    margin-top: 10px;
+    background: black;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+}
