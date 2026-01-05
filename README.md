@@ -1,55 +1,65 @@
-# Proyecto Final React - Narváez
+# E-commerce React
 
-Este proyecto es una Single Page Application (SPA) de un e-commerce desarrollada con **React** como parte del curso de **Desarrollo Web Frontend con React** de Coderhouse.
+Aplicación e-commerce desarrollada con **React** como proyecto individual, realizada en el contexto del curso de Desarrollo Web Frontend con React en Coderhouse.
 
-## 👜 Temática
+Este repositorio corresponde a **un proyecto que forma parte de mi portfolio**, no a mi portfolio personal.
 
-La tienda online simula un e-commerce de bolsos hechos a mano, con productos cargados desde una base de datos en la nube y la posibilidad de realizar una compra completa desde la web.
+---
 
-## 🚀 Tecnologías utilizadas
+## 👜 Descripción del proyecto
 
+La aplicación simula una tienda online de bolsos hechos a mano, con productos obtenidos desde una base de datos en la nube y la posibilidad de completar un proceso de compra real, desde el listado hasta la generación de una orden.
+
+---
+
+## 🌐 Demo
+- Live: *(pendiente de deploy en Vercel)*
+- Repo: este repositorio
+
+---
+
+## 🚀 Funcionalidades
+- Listado dinámico de productos desde **Firebase / Firestore**
+- Filtrado por categorías
+- Vista de detalle del producto
+- Selección de cantidad con validación de stock
+- Carrito de compras con estado global mediante **Context API**
+- Formulario de checkout
+- Generación de orden y guardado en Firestore
+- Visualización del ID de la orden al finalizar la compra
+- Navegación SPA con **React Router**
+- Renderizado condicional y manejo de estados de carga
+
+---
+
+## 🛠️ Tecnologías utilizadas
 - React
 - React Router DOM
 - Firebase / Firestore
-- JavaScript
+- JavaScript (ES6+)
 - Context API
 - CSS
+- Vite
 
-## 🧩 Estructura de componentes
+---
 
-```
-App
-├── NavBar
-│   └── CartWidget
-├── ItemListContainer
-│   └── ItemList
-│       └── Item
-├── ItemDetailContainer
-│   └── ItemDetail
-│       └── ItemCount
-├── Cart
-│   └── CartItem
-└── CheckoutForm
-```
-
-## 🔗 Funcionalidades
-
-- Listado dinámico de productos desde Firebase.
-- Filtrado por categorías.
-- Vista en detalle de cada producto.
-- Selección de cantidad con validación de stock.
-- Carrito de compras con gestión global (Context).
-- Formulario de compra con generación de orden en Firestore.
-- Mensaje con ID de la orden al finalizar compra.
-- Navegación SPA con React Router.
-- Renderizado condicional y UX amigable.
+## 📦 Estructura del proyecto
+```text
+src/
+├── assets/            # Recursos gráficos
+├── components/        # Componentes de UI
+├── context/           # Estado global (carrito)
+├── services/          # Servicios y configuración de Firebase
+├── styles/            # Estilos
+├── App.jsx
+└── main.jsx
 
 ## 📦 Instalación y uso
 
 1. Clonar el repositorio:
    ```
-   git clone https://github.com/tuUsuario/ProyectoFinalNarvaez.git
-   cd ProyectoFinalNarvaez
+   git clone https://github.com/CNarvaezPeralta/react-ecommerce.git
+   
    ```
 
 2. Instalar dependencias:
@@ -73,6 +83,21 @@ App
    ```
 
 
-## ✨ Autor
+## 🧠 Lo que aprendí
 
-Desarrollado por **Carlos Narváez** como entrega final del curso de React en Coderhouse.
+Organización de un proyecto React de tamaño medio
+
+Separación de responsabilidades entre componentes, contexto y servicios
+
+Uso de rutas dinámicas con React Router
+
+Manejo de estado global con Context API
+
+Integración real con Firestore para productos y órdenes
+
+Manejo de renderizado condicional y estados de carga
+
+## 👤 Autor
+
+Carlos Narváez
+Frontend Developer Junior
