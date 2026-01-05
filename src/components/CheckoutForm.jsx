@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useCart } from '../context/useCart';
-import { db } from '../firebase/firebaseconfig';
+import { db } from '../services/firebase/firebaseconfig';
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
 import '../styles/CheckoutForm.css';
 
