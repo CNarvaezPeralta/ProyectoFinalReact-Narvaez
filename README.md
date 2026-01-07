@@ -2,7 +2,7 @@
 
 Aplicación e-commerce desarrollada con **React** como proyecto individual, realizada en el contexto del curso de Desarrollo Web Frontend con React en Coderhouse.
 
-Este repositorio corresponde a **un proyecto que forma parte de mi portfolio**, no a mi portfolio personal.
+Este repositorio corresponde a **un proyecto que forma parte de mi portfolio**.
 
 ---
 
@@ -53,13 +53,14 @@ src/
 ├── styles/            # Estilos
 ├── App.jsx
 └── main.jsx
+```
 
 ## 📦 Instalación y uso
 
 1. Clonar el repositorio:
    ```
    git clone https://github.com/CNarvaezPeralta/react-ecommerce.git
-   
+
    ```
 
 2. Instalar dependencias:
@@ -96,6 +97,8 @@ Manejo de estado global con Context API
 Integración real con Firestore para productos y órdenes
 
 Manejo de renderizado condicional y estados de carga
+
+---
 
 ## 👤 Autor
 
