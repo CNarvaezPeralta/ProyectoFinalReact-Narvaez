@@ -1,106 +1,87 @@
-# E-commerce React
+# 👜 E-commerce – React + Firebase
 
-Aplicación e-commerce desarrollada con **React** como proyecto individual, realizada en el contexto del curso de Desarrollo Web Frontend con React en Coderhouse.
+Este proyecto es una aplicación de comercio electrónico (SPA) centrada en la venta de bolsos artesanales. Fue desarrollado como **proyecto final** para el curso de React en Coderhouse.
 
-Este repositorio corresponde a **un proyecto que forma parte de mi portfolio**.
-
----
-
-## 👜 Descripción del proyecto
-
-La aplicación simula una tienda online de bolsos hechos a mano, con productos obtenidos desde una base de datos en la nube y la posibilidad de completar un proceso de compra real, desde el listado hasta la generación de una orden.
+> ⚠️ **Nota**: Este es un proyecto demostrativo desarrollado con fines educativos para mi portfolio profesional.
 
 ---
 
-## 🌐 Demo
-- Live: *(pendiente de deploy en Vercel)*
-- Repo: este repositorio
+## 🚀 Funcionalidades Clave
+
+- **Catálogo Dinámico**: Listado de productos consumidos en tiempo real desde **Firestore**.
+- **Filtrado por Categorías**: Navegación fluida entre tipos de productos mediante rutas dinámicas.
+- **Gestión de Carrito**: Implementación de un **Context API** para manejar el estado global de la compra (añadir, quitar y calcular totales).
+- **Checkout y Pedidos**: Formulario de compra con validación y generación automática de órdenes en la base de datos.
+- **Experiencia de Usuario (UX)**: Manejo de estados de carga (*loaders*) y renderizado condicional.
 
 ---
 
-## 🚀 Funcionalidades
-- Listado dinámico de productos desde **Firebase / Firestore**
-- Filtrado por categorías
-- Vista de detalle del producto
-- Selección de cantidad con validación de stock
-- Carrito de compras con estado global mediante **Context API**
-- Formulario de checkout
-- Generación de orden y guardado en Firestore
-- Visualización del ID de la orden al finalizar la compra
-- Navegación SPA con **React Router**
-- Renderizado condicional y manejo de estados de carga
+## 🛠️ Stack Tecnológico
+
+- **React.js** (Hooks, Context API)
+- **React Router DOM** (Navegación SPA)
+- **Firebase / Firestore** (Base de datos NoSQL)
+- **CSS3** (Diseño responsive)
+- **Vite** (Build tool)
 
 ---
 
-## 🛠️ Tecnologías utilizadas
-- React
-- React Router DOM
-- Firebase / Firestore
-- JavaScript (ES6+)
-- Context API
-- CSS
-- Vite
+## 📦 Estructura del Proyecto
 
----
-
-## 📦 Estructura del proyecto
 ```text
 src/
-├── assets/            # Recursos gráficos
-├── components/        # Componentes de UI
-├── context/           # Estado global (carrito)
-├── services/          # Servicios y configuración de Firebase
-├── styles/            # Estilos
-├── App.jsx
-└── main.jsx
+├── assets/          # Imágenes y recursos estáticos
+├── components/      # Componentes de UI (Navbar, ItemList, Cart, etc.)
+├── context/         # Lógica del estado global del carrito
+├── services/        # Configuración y llamadas a Firebase
+├── styles/          # Archivos de estilos CSS
+├── App.jsx          # Enrutador y proveedores de contexto
+└── main.jsx         # Punto de entrada de la aplicación
 ```
 
-## 📦 Instalación y uso
+## ⚙️ Instalación y Configuración
 
-1. Clonar el repositorio:
-   ```
-   git clone https://github.com/CNarvaezPeralta/react-ecommerce.git
+1. **Clonar el repositorio:**
 
-   ```
+```Bash
 
-2. Instalar dependencias:
-   ```
-   npm install
-   ```
+git clone [https://github.com/CNarvaezPeralta/react-ecommerce.git](https://github.com/CNarvaezPeralta/react-ecommerce.git)
+```
 
-3. Crear un archivo `.env` en la raíz con tus claves de Firebase:
-   ```
-   VITE_FIREBASE_API_KEY=xxxxxxxxxxxxxxxx
-   VITE_FIREBASE_AUTH_DOMAIN=xxxxxxxxxxxxxxxx
-   VITE_FIREBASE_PROJECT_ID=xxxxxxxxxxxx
-   VITE_FIREBASE_STORAGE_BUCKET=xxxxxxxxxxxx
-   VITE_FIREBASE_MESSAGING_SENDER_ID=xxxxxxxx
-   VITE_FIREBASE_APP_ID=xxxxxxxxxxxxxxxx
-   ```
+2. **Instalar dependencias:**
 
-4. Iniciar el servidor de desarrollo:
-   ```
-   npm run dev
-   ```
+```Bash
 
+npm install
+```
 
-## 🧠 Lo que aprendí
+3. **Variables de Entorno:** 
+Crea un archivo .env en la raíz del proyecto y añade tus credenciales de Firebase:
 
-Organización de un proyecto React de tamaño medio
+```
+VITE_FIREBASE_API_KEY=tu_api_key
+VITE_FIREBASE_AUTH_DOMAIN=tu_domain
+VITE_FIREBASE_PROJECT_ID=tu_project_id
+VITE_FIREBASE_STORAGE_BUCKET=tu_bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=tu_id
+VITE_FIREBASE_APP_ID=tu_app_id
+```
 
-Separación de responsabilidades entre componentes, contexto y servicios
+4. **Ejecutar en local:**
 
-Uso de rutas dinámicas con React Router
+```Bash
 
-Manejo de estado global con Context API
+npm run dev
+```
 
-Integración real con Firestore para productos y órdenes
+## 🧠 Desafíos y Aprendizajes
+Este proyecto me permitió consolidar conceptos avanzados de React:
 
-Manejo de renderizado condicional y estados de carga
+Flujo de datos: Entender cómo fluye la información mediante el contexto global.
 
----
+Persistencia: Trabajar con una base de datos real (Firestore) para guardar órdenes.
 
-## 👤 Autor
+Arquitectura: Separar la lógica de Firebase de los componentes visuales para un código más limpio.
 
-Carlos Narváez
-Frontend Developer Junior
+👤 Autor
+Carlos Narváez - Frontend Developer Junior
