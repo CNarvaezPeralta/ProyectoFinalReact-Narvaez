@@ -1,5 +1,7 @@
 # 👜 E-commerce – React + Firebase
 
+> 🔗 **Demo en vivo:** [Lule-Shop](https://lule-shop.vercel.app/)
+
 Este proyecto es una aplicación de comercio electrónico (SPA) centrada en la venta de bolsos artesanales. Fue desarrollado como **proyecto final** para el curso de React en Coderhouse.
 
 > ⚠️ **Nota**: Este es un proyecto demostrativo desarrollado con fines educativos para mi portfolio profesional.
