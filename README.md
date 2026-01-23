@@ -85,5 +85,5 @@ Persistencia: Trabajar con una base de datos real (Firestore) para guardar órde
 
 Arquitectura: Separar la lógica de Firebase de los componentes visuales para un código más limpio.
 
-👤 Autor
+## 👤 Autor  
 Carlos Narváez - Frontend Developer Junior
