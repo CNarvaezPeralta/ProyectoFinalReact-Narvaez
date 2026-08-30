@@ -1,11 +1,37 @@
-/* ============ Variables y fuentes base ============ */
+/* ============ LULE · Costa Brava — Design tokens ============ */
+/* Paleta de marca, consistente en toda la web: arena de fondo,
+   verde profundo, terracota y dorado/mostaza como los tres acentos. */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --color-cream: #faf3e6;
+  --color-cream-soft: #f2e9d8;
+  --color-sand: #e7d9bf;
+  --color-white: #fffdf9;
+  --color-ink: #2b2420;
+  --color-ink-soft: #5c5248;
+
+  --color-green: #1f6e71;
+  --color-green-dark: #154e50;
+  --color-terracotta: #c1512f;
+  --color-terracotta-dark: #9c3f24;
+  --color-gold: #d9a441;
+
+  --font-display: "Playfair Display", Georgia, "Iowan Old Style", serif;
+  --font-body: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+
+  --shadow-soft: 0 10px 30px rgba(43, 36, 32, 0.08);
+  --shadow-lift: 0 18px 40px rgba(43, 36, 32, 0.14);
+
+  font-family: var(--font-body);
   font-weight: 400;
   line-height: 1.5;
 
-  color: #333; /* Texto oscuro para fondo claro */
-  background-color: #ffffff; /* Fondo claro por defecto */
+  color: var(--color-ink);
+  background-color: var(--color-cream);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,70 +39,166 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ============ Reset general ============ */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+}
+
 /* ============ Enlaces ============ */
 a {
   font-weight: 500;
-  color: #007BFF; /* Azul estándar */
+  color: var(--color-green);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 a:hover {
-  color: #0056b3; /* Azul más oscuro al pasar el cursor */
-}
-
-/* ============ Reset general del body ============ */
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-  background-color: #f5f5f5; /* Fondo gris claro coherente con App.css */
+  color: var(--color-terracotta);
 }
 
 /* ============ Títulos ============ */
+/* Sans por defecto (look editorial y limpio); la serif queda reservada
+   para titulares de campaña vía .font-display */
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
 }
 
 /* ============ Botones generales ============ */
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  color: white;
+/* .btn da la caja base también a enlaces (<a>/<Link>) usados como CTA */
+button,
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--color-ink);
+  padding: 0.85em 1.8em;
+  font-size: 0.82em;
+  font-weight: 600;
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  background-color: var(--color-ink);
+  color: var(--color-white);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
 }
 
-button:hover {
-  border-color: #007BFF;
+button:hover,
+.btn:hover {
+  background-color: var(--color-terracotta);
+  border-color: var(--color-terracotta);
+  color: var(--color-white);
+  transform: translateY(-1px);
+}
+
+/* Botón secundario, en contorno */
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-ink);
+  border-color: var(--color-ink);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-ink);
+  color: var(--color-white);
+  border-color: var(--color-ink);
 }
 
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 2px solid var(--color-green);
+  outline-offset: 2px;
+}
+
+button:disabled,
+button:disabled:hover {
+  cursor: not-allowed;
+  opacity: 0.4;
+  background-color: var(--color-ink);
+  border-color: var(--color-ink);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-green);
+  outline-offset: 2px;
+}
+
+input,
+textarea {
+  font-family: var(--font-body);
+}
+
+/* ============ Selector de cantidad (compartido: detalle y cesta) ============ */
+.item-count-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  border: 1.5px solid var(--color-sand);
+  overflow: hidden;
+}
+
+.item-count-controls button {
+  background: transparent;
+  color: var(--color-ink);
+  border: none;
+  border-radius: 0;
+  padding: 0.5rem 1rem;
+}
+
+.item-count-controls button:hover {
+  background: var(--color-cream-soft);
+  color: var(--color-ink);
+}
+
+.item-count-controls span {
+  padding: 0 1rem;
+  font-weight: 600;
+  min-width: 1.5rem;
+  text-align: center;
+}
+
+/* ============ Spinner de carga ============ */
+.spinner {
+  margin: 0 auto 1rem;
+  border: 6px solid var(--color-sand);
+  border-top: 6px solid var(--color-terracotta);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ============ Scrollbar personalizado ============ */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 4px;
+  background-color: var(--color-sand);
+  border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #999;
-}
-
-/* ============ Adaptación a sistema claro ============ */
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #333;
-    background-color: #ffffff;
-  }
+  background-color: var(--color-terracotta);
 }

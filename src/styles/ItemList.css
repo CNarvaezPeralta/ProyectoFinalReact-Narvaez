@@ -1,27 +1,23 @@
+/* =============== título de sección =============== */
+
+.section-title {
+    text-align: center;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.8rem, 3.6vw, 2.3rem);
+    margin-bottom: 2.8rem;
+}
+
 /* =============== contenedor para la lista de productos =============== */
 
 .item-list-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    justify-content: center;
-    padding: 2rem;
-    max-width: 900px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px;
+    background-color: var(--color-sand);
+    border-top: 1px solid var(--color-sand);
+    border-left: 1px solid var(--color-sand);
+    max-width: 1280px;
     margin: 0 auto;
 }
 
-.spinner {
-    margin: 0 auto;
-    border: 6px solid #f3f3f3;
-    border-top: 6px solid #007bff;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    to {
-    transform: rotate(360deg);
-    }
-}

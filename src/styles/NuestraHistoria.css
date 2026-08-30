@@ -1,0 +1,63 @@
+.historia-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.25rem 5rem;
+}
+
+.historia-eyebrow {
+    justify-content: center;
+}
+
+.historia-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    margin-bottom: 3.5rem;
+}
+
+.historia-lead {
+    font-size: clamp(1.3rem, 2.6vw, 1.6rem);
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--color-ink);
+}
+
+.historia-body p {
+    color: var(--color-ink-soft);
+    line-height: 1.8;
+    font-size: 1.02rem;
+}
+
+.historia-values {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2.5rem 0;
+    margin-bottom: 3rem;
+    border-top: 1px solid var(--color-sand);
+    border-bottom: 1px solid var(--color-sand);
+}
+
+.historia-value-title {
+    display: block;
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-terracotta);
+}
+
+.historia-value p {
+    color: var(--color-ink-soft);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.historia-cta {
+    text-align: center;
+}
+
+@media (min-width: 700px) {
+    .historia-values {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem;
+    }
+}

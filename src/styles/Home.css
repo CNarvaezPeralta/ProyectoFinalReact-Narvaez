@@ -1,0 +1,99 @@
+/* ======================== Vista previa curada (Home) ======================== */
+
+.home-preview {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-top: 4rem;
+    padding-bottom: 5rem;
+}
+
+.home-preview-eyebrow {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+/* ======================== Pieza destacada ======================== */
+
+.featured-product {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    color: var(--color-ink);
+    margin-bottom: 5rem;
+}
+
+.featured-product:hover {
+    color: var(--color-ink);
+}
+
+.featured-product-image-wrap {
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    background-color: var(--color-cream-soft);
+}
+
+.featured-product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.featured-product:hover .featured-product-image {
+    transform: scale(1.03);
+}
+
+.featured-product-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.featured-product-info h3 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 500;
+    line-height: 1.15;
+}
+
+.featured-product-price {
+    font-size: 1.15rem;
+    color: var(--color-ink-soft);
+    margin-bottom: 0.6rem;
+}
+
+.featured-product-desc {
+    color: var(--color-ink-soft);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    max-width: 46ch;
+}
+
+.featured-product-cta {
+    pointer-events: none;
+}
+
+@media (min-width: 860px) {
+    .featured-product {
+        grid-template-columns: 1.1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .featured-product-info {
+        padding-right: 1rem;
+    }
+}
+
+/* ======================== "Más piezas" + CTA ======================== */
+
+.home-preview-more {
+    margin-bottom: 3rem;
+}
+
+.home-preview-cta {
+    text-align: center;
+    margin-top: 1rem;
+}

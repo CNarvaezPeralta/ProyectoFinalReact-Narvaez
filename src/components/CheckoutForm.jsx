@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useCart } from '../context/useCart';
 import { db } from '../services/firebase/firebaseconfig';
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
+import gsap from 'gsap';
 import '../styles/CheckoutForm.css';
 
 
@@ -15,15 +17,14 @@ function CheckoutForm() {
 
     // Estado para guardar el ID de la orden generada
     const [orderId, setOrderId] = useState('');
+    const [formError, setFormError] = useState(null);
+    const [submitting, setSubmitting] = useState(false);
+    const successRef = useRef(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // Validación básica
-        if (!nombre || !email || !telefono) {
-            alert("Por favor completa todos los campos.");
-            return;
-        }
+        setFormError(null);
+        setSubmitting(true);
 
         // Armamos la orden
         const orden = {
@@ -45,41 +46,87 @@ function CheckoutForm() {
             clearCart(); // Limpiamos el carrito
         } catch (error) {
             console.error("Error al guardar la orden:", error);
-            alert("Hubo un problema al procesar la compra. Intenta nuevamente.");
+            setFormError("Hubo un problema al procesar la compra. Inténtalo de nuevo.");
+        } finally {
+            setSubmitting(false);
         }
     };
 
     return (
-        <div style={{ padding: '2rem' }}>
-            <h2>Finalizar compra</h2>
+        <div className="checkout-page">
+            <div className="page-header">
+                <h2>Finalizar compra</h2>
+                <div className="breadcrumb">
+                    <Link to="/">Inicio</Link>
+                    <span>/</span>
+                    <Link to="/cart">Tu cesta</Link>
+                    <span>/</span>
+                    <span>Finalizar compra</span>
+                </div>
+            </div>
 
             {orderId ? (
-                <div className="order-success">
-                    <h3>¡Gracias por tu compra! </h3>
+                <div
+                    className="order-success"
+                    ref={(el) => {
+                        if (el && el !== successRef.current) {
+                            successRef.current = el;
+                            gsap.fromTo(
+                                el,
+                                { y: 16, autoAlpha: 0 },
+                                { y: 0, autoAlpha: 1, duration: 0.55, ease: 'power2.out' }
+                            );
+                        }
+                    }}
+                >
+                    <h3 className="font-display">¡Gracias por tu compra!</h3>
                     <p>Tu número de orden es:</p>
                     <p className="order-id">{orderId}</p>
                 </div>
             ) : (
-                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '400px' }}>
-                    <input
-                        type="text"
-                        placeholder="Nombre completo"
-                        value={nombre}
-                        onChange={(e) => setNombre(e.target.value)}
-                    />
-                    <input
-                        type="email"
-                        placeholder="Correo electrónico"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <input
-                        type="tel"
-                        placeholder="Teléfono"
-                        value={telefono}
-                        onChange={(e) => setTelefono(e.target.value)}
-                    />
-                    <button type="submit">Confirmar compra</button>
+                <form onSubmit={handleSubmit} className="checkout-form">
+                    <div className="form-field">
+                        <label htmlFor="nombre">Nombre completo</label>
+                        <input
+                            id="nombre"
+                            name="nombre"
+                            type="text"
+                            autoComplete="name"
+                            required
+                            value={nombre}
+                            onChange={(e) => setNombre(e.target.value)}
+                        />
+                    </div>
+                    <div className="form-field">
+                        <label htmlFor="email">Correo electrónico</label>
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            autoComplete="email"
+                            required
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div className="form-field">
+                        <label htmlFor="telefono">Teléfono</label>
+                        <input
+                            id="telefono"
+                            name="telefono"
+                            type="tel"
+                            autoComplete="tel"
+                            required
+                            value={telefono}
+                            onChange={(e) => setTelefono(e.target.value)}
+                        />
+                    </div>
+
+                    {formError && <p className="form-error">{formError}</p>}
+
+                    <button type="submit" disabled={submitting}>
+                        {submitting ? 'Procesando...' : 'Confirmar compra'}
+                    </button>
                 </form>
             )}
         </div>

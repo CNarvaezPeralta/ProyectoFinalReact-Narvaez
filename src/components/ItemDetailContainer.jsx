@@ -33,8 +33,17 @@ function ItemDetailContainer() {
         fetchProducto();
     }, [itemId]);
 
-    if (loading) return <p style={{ padding: '2rem' }}>Cargando producto...</p>;
-    if (error) return <p style={{ padding: '2rem', color: 'red' }}>{error}</p>;
+    if (loading) return (
+        <div className="page-section state-message">
+            <div className="spinner"></div>
+            <p>Cargando producto...</p>
+        </div>
+    );
+    if (error) return (
+        <div className="page-section state-message">
+            <p className="state-message--error">{error}</p>
+        </div>
+    );
 
     return <ItemDetail producto={producto} />;
 }

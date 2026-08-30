@@ -1,32 +1,20 @@
-/* ======================== Reset y estilo base ======================== */
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f5f5f5; /* Fondo claro suave */
-  color: #333;               /* Texto principal */
-}
-
-/* ======================== NAVBAR ======================== */
+/* ======================== NAVBAR (mobile-first) ======================== */
 
 .navbar {
-  background-color: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Sombra sutil */
-  padding: 1rem 0;
-  position: sticky; /* Se mantiene visible al hacer scroll */
+  background-color: var(--color-cream);
+  border-bottom: 1px solid var(--color-sand);
+  padding: 0.85rem 0;
+  position: sticky;
   top: 0;
-  z-index: 100; /* Asegura visibilidad sobre otros elementos */
+  z-index: 300;
 }
 
-/* Contenedor de contenido dentro del navbar */
 .navbar-inner {
+  position: relative;
+  z-index: 2;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -37,89 +25,512 @@ body {
 .logo {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-}
-
-.logo h1 {
-  margin: 0;
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #222;
 }
 
 .logo-img {
-  height: 40px;
+  height: 44px;
   width: auto;
+  display: block;
 }
 
-/* ======================== Menú de navegación ======================== */
-
-.nav-menu {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
+/* ======================== Menú de navegación (escritorio) ======================== */
+/* Oculto en mobile: la navegación mobile vive en .nav-overlay */
 
 .nav-links {
+  display: none;
+}
+
+.nav-links ul {
   list-style: none;
   display: flex;
-  gap: 1.5rem;
+  gap: 1.8rem;
   margin: 0;
   padding: 0;
 }
 
 .nav-links a {
   text-decoration: none;
-  color: #007BFF; /* Azul moderno */
+  color: var(--color-ink-soft);
   font-weight: 500;
-  transition: color 0.2s;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: relative;
+  cursor: pointer;
+  padding-bottom: 2px;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-terracotta);
+  transition: width 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.is-active {
+  color: var(--color-ink);
+}
+
+.nav-links a:hover::after,
+.nav-links a.is-active::after {
+  width: 100%;
+}
+
+/* ======================== Acciones (cesta + hamburguesa) ======================== */
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* ======================== Botón hamburguesa ======================== */
+
+.hamburger {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  padding: 0;
   cursor: pointer;
 }
 
-.nav-links a:hover {
-  color: #0056b3; /* Azul más oscuro al pasar el cursor */
+.hamburger:hover {
+  background: transparent;
+  border-color: transparent;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background-color: var(--color-ink);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+.hamburger.is-open span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.hamburger.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.is-open span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ======================== Overlay de navegación mobile ======================== */
+
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-cream);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.nav-overlay-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.7rem;
+}
+
+.nav-overlay-links a {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 500;
+  color: var(--color-ink);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.nav-overlay-links a:hover,
+.nav-overlay-links a.is-active {
+  color: var(--color-terracotta);
+}
+
+@media (min-width: 880px) {
+  .navbar-inner {
+    padding: 0 2rem;
+  }
+
+  .logo-img {
+    height: 52px;
+  }
+
+  .nav-links {
+    display: block;
+  }
+
+  .hamburger {
+    display: none;
+  }
 }
 
 /* ======================== Carrito ======================== */
 
 .cart-widget {
-  font-size: 1.2rem;
-  display: flex;
+  position: relative;
+  display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--color-ink) !important;
+  transition: opacity 0.2s ease;
 }
 
 .cart-widget:hover {
-  opacity: 0.8;
-  cursor: pointer;
+  opacity: 0.65;
 }
 
-/* ======================== Mensaje de bienvenida ======================== */
+.cart-widget-icon {
+  width: 23px;
+  height: 23px;
+}
 
-.welcome-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 100px); /* Altura completa menos navbar */
+.cart-widget-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 3px;
+  border-radius: 999px;
+  background-color: var(--color-ink);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
+  line-height: 17px;
   text-align: center;
 }
 
-.welcome-container h2 {
-  font-size: 2rem;
-  color: #444;
+/* ======================== Hero ======================== */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: min(78vh, 640px);
+  display: flex;
+  align-items: flex-end;
+  padding: 3.5rem 1.25rem 4rem;
+  background-image: url('https://res.cloudinary.com/dbiebpjwx/image/upload/f_auto,q_auto/v1788125408/hero_dfrdth.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* Punto de foco de la foto: ajusta este porcentaje vertical si el horizonte
+     o el pueblo quedan cortados de forma rara en pantallas estrechas. */
+  background-position: center center;
 }
 
-/* ======================== Responsive básico ======================== */
-
-@media (max-width: 768px) {
-  .navbar-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  .nav-menu {
-    flex-direction: column;
-    align-items: flex-start;
+@media (min-width: 768px) {
+  .hero {
+    padding: 3rem 2rem;
   }
 }
+
+/* Overlay de legibilidad, en dos capas:
+   1) un velo oscuro uniforme y sutil sobre toda la foto, para que el texto
+      blanco tenga contraste mínimo en cualquier zona.
+   2) un degradado radial centrado justo detrás del bloque de texto (título,
+      subtítulo y botón), más oscuro en el centro y suave hacia los bordes,
+      para no tapar el protagonismo de la foto fuera de esa zona. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 12, 10, 0.3);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 75% 65% at 50% 88%,
+    rgba(10, 9, 7, 0.62) 0%,
+    rgba(10, 9, 7, 0.28) 55%,
+    rgba(10, 9, 7, 0) 85%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+  padding-bottom: 1rem;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-gold);
+  margin-bottom: 1.3rem;
+  /* Sombra sutil (en vez de text-shadow, para que alcance también a las
+     líneas decorativas ::before/::after) para que se lea sobre cualquier
+     zona clara de la foto. */
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.55));
+}
+
+.hero-eyebrow::before,
+.hero-eyebrow::after {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background-color: var(--color-gold);
+}
+
+.hero h2 {
+  font-size: clamp(2.1rem, 5vw, 3.2rem);
+  font-weight: 500;
+  line-height: 1.12;
+  color: var(--color-white);
+  margin-bottom: 1.1rem;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
+}
+
+.hero p {
+  font-size: 1.05rem;
+  color: rgba(255, 253, 249, 0.85);
+  line-height: 1.6;
+  margin-bottom: 2.2rem;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background-color: transparent;
+  color: var(--color-white);
+  border: 1.5px solid var(--color-white);
+  padding: 0.8rem 2rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.hero-cta:hover {
+  background-color: var(--color-white);
+  color: var(--color-ink);
+}
+
+/* ======================== Sección de contenido ======================== */
+
+.page-section {
+  padding: 1rem 1.25rem 3rem;
+}
+
+#coleccion {
+  scroll-margin-top: 5.5rem;
+}
+
+.state-message {
+  text-align: center;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  color: var(--color-ink-soft);
+}
+
+.state-message--error {
+  color: var(--color-terracotta);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-terracotta);
+  margin-bottom: 0.8rem;
+}
+
+.not-found {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 1.5rem;
+}
+
+.not-found h2 {
+  font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+  max-width: 480px;
+  margin-bottom: 0.8rem;
+}
+
+.not-found p {
+  color: var(--color-ink-soft);
+  margin-bottom: 2rem;
+}
+
+.page-section--narrow {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .page-section {
+    padding: 1rem 2rem 4rem;
+  }
+
+  .page-section--narrow {
+    padding: 3rem 2rem;
+  }
+}
+
+/* ======================== Encabezado editorial de página ======================== */
+/* Título serif centrado + breadcrumb, para Cesta / Checkout / Colección */
+
+.page-header {
+  text-align: center;
+  padding: 3rem 2rem 2.5rem;
+}
+
+.page-header--compact {
+  padding: 0 0 2rem;
+  text-align: left;
+}
+
+.page-header--compact .breadcrumb {
+  justify-content: flex-start;
+}
+
+.contacto-text {
+  color: var(--color-ink-soft);
+  line-height: 1.7;
+}
+
+.page-header h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  margin-bottom: 0.9rem;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-ink-soft);
+}
+
+.breadcrumb a {
+  color: var(--color-ink-soft);
+}
+
+.breadcrumb a:hover {
+  color: var(--color-terracotta);
+}
+
+/* ======================== Footer ======================== */
+
+.site-footer {
+  background-color: var(--color-green-dark);
+  color: var(--color-cream);
+  margin-top: 4rem;
+}
+
+.site-footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.2rem;
+}
+
+@media (min-width: 700px) {
+  .site-footer-inner {
+    padding: 3.5rem 2rem 2.5rem;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 2.5rem;
+  }
+}
+
+.site-footer h3 {
+  font-size: 1.4rem;
+  color: var(--color-white);
+  margin-bottom: 0.8rem;
+}
+
+.site-footer p {
+  color: rgba(250, 243, 230, 0.75);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.site-footer h4 {
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  color: var(--color-gold);
+  margin-bottom: 1rem;
+}
+
+.site-footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.site-footer a {
+  color: rgba(250, 243, 230, 0.85);
+}
+
+.site-footer a:hover {
+  color: var(--color-gold);
+}
+
+.site-footer-bottom {
+  border-top: 1px solid rgba(250, 243, 230, 0.15);
+  text-align: center;
+  padding: 1.2rem 2rem;
+  font-size: 0.85rem;
+  color: rgba(250, 243, 230, 0.6);
+}
+

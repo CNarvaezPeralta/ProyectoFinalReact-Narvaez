@@ -1,11 +1,31 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 
 // 1. Creamos el contexto y lo exportamos
 export const CartContext = createContext();
 
+const STORAGE_KEY = 'lule-cart';
+
+function loadCart() {
+    try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        return saved ? JSON.parse(saved) : [];
+    } catch {
+        return [];
+    }
+}
+
 // 2. Componente proveedor
 export function CartProvider({ children }) {
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState(loadCart);
+
+    // Persistimos la cesta para que sobreviva a un refresco de página
+    useEffect(() => {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+        } catch {
+            // almacenamiento no disponible (modo privado, cuota llena, etc.)
+        }
+    }, [cart]);
 
     const addItem = (item, cantidad) => {
         const itemExistente = cart.find(prod => prod.id === item.id);
@@ -26,6 +46,11 @@ export function CartProvider({ children }) {
         setCart(cart.filter(item => item.id !== id));
     };
 
+    const updateQuantity = (id, cantidad) => {
+        if (cantidad < 1) return;
+        setCart(cart.map(item => item.id === id ? { ...item, cantidad } : item));
+    };
+
     const clearCart = () => {
         setCart([]);
     };
@@ -41,6 +66,7 @@ export function CartProvider({ children }) {
                 cart,
                 addItem,
                 removeItem,
+                updateQuantity,
                 clearCart,
                 cartQuantity,
                 cartTotal,

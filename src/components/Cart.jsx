@@ -1,44 +1,84 @@
+import { useLayoutEffect, useRef } from 'react';
 import { useCart } from '../context/useCart'; // Hook personalizado para acceder al contexto del carrito
 import CartItem from './CartItem';            // Componente que representa cada ítem en el carrito
-import { useNavigate } from 'react-router-dom'; // Hook para redireccionar entre rutas
+import { useNavigate, Link } from 'react-router-dom'; // Hook para redireccionar entre rutas
+import gsap from 'gsap';
+import '../styles/Cart.css';
 
 function Cart() {
-    const { cart, removeItem, cartTotal, clearCart } = useCart(); // Funciones y estado del carrito
+    const { cart, removeItem, updateQuantity, cartTotal, clearCart } = useCart(); // Funciones y estado del carrito
     const navigate = useNavigate(); // Para navegar a otra ruta
+    const tableRef = useRef(null);
+
+    // Entrada suave de las filas de la cesta, en línea con el resto del sitio
+    useLayoutEffect(() => {
+        if (!tableRef.current) return;
+        const ctx = gsap.context(() => {
+            gsap.fromTo(
+                '.cart-row',
+                { y: 16, autoAlpha: 0 },
+                { y: 0, autoAlpha: 1, duration: 0.5, stagger: 0.08, ease: 'power2.out' }
+            );
+        }, tableRef);
+        return () => ctx.revert();
+    }, [cart.length]);
 
     // Si el carrito está vacío, mostrar mensaje
     if (cart.length === 0) {
         return (
-            <div style={{ padding: '2rem' }}>
-                <h2>Tu carrito está vacío 🛒</h2>
+            <div className="cart-page">
+                <div className="page-header">
+                    <h2>Tu cesta</h2>
+                    <div className="breadcrumb">
+                        <Link to="/">Inicio</Link>
+                        <span>/</span>
+                        <span>Tu cesta</span>
+                    </div>
+                </div>
+                <div className="cart-empty">
+                    <p>Tu cesta está vacía.</p>
+                    <Link to="/coleccion" className="btn btn-outline">Ver la colección</Link>
+                </div>
             </div>
         );
     }
 
     // Si hay productos en el carrito, renderizarlos
     return (
-        <div style={{ padding: '2rem' }}>
-            <h2>Carrito de compras</h2>
+        <div className="cart-page">
+            <div className="page-header">
+                <h2>Tu cesta</h2>
+                <div className="breadcrumb">
+                    <Link to="/">Inicio</Link>
+                    <span>/</span>
+                    <span>Tu cesta</span>
+                </div>
+            </div>
 
-            {/* Listado de productos en el carrito */}
-            {cart.map((item) => (
-                <CartItem key={item.id} item={item} onRemove={removeItem} />
-            ))}
+            <div className="cart-table" ref={tableRef}>
+                <div className="cart-table-head">
+                    <span>Producto</span>
+                    <span>Precio</span>
+                </div>
+
+                {/* Listado de productos en el carrito */}
+                {cart.map((item) => (
+                    <CartItem key={item.id} item={item} onRemove={removeItem} onUpdateQuantity={updateQuantity} />
+                ))}
+            </div>
 
             {/* Total de la compra */}
-            <h3>Total: ${cartTotal.toFixed(2)}</h3>
+            <div className="cart-total-row">
+                <span>Total</span>
+                <span>${cartTotal.toFixed(2)}</span>
+            </div>
+            <p className="cart-note">Envío calculado al finalizar la compra.</p>
 
-            {/* Botón para ir al checkout */}
-            <button
-                onClick={() => navigate('/checkout')}
-                style={{ marginTop: '1rem', marginRight: '1rem' }}
-            >
+            <button className="cart-checkout-btn" onClick={() => navigate('/checkout')}>
                 Finalizar compra
             </button>
-
-            {/* Botón para vaciar el carrito */}
-            <button onClick={clearCart} style={{ marginTop: '1rem' }}>
-                Vaciar carrito
+            <button className="btn-outline cart-clear-btn" onClick={clearCart}>
+                Vaciar cesta
             </button>
         </div>
     );
